@@ -55,11 +55,12 @@ whether you hit them:
 
 <!-- Your criterion. It must name a number. -->
 
+The classifier should achieve an overall accuracy of at least 65% on the held-out test set.
 
 
 **Why this target:**
 
-
+With three labels, a random guess would only be correct about one-third of the time. I chose 65% because I would consider the classifier useful if it can correctly categorize roughly two out of every three unseen posts.
 
 ---
 
@@ -67,9 +68,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+Each of the three labels — player_experience, game_design, and gaming_culture — should achieve an F1 score of at least 0.55 on the held-out test set.
 
 **Why this target:**
+
+Overall accuracy could hide a label that the model performs poorly on. I chose 0.55 because the categories have some overlap, especially player_experience and gaming_culture, but I still want the model to perform meaningfully better than simply favoring the easiest category.
 
 
 
@@ -79,9 +82,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+No single label should make up more than 60% of the examples in labels.csv.
 
 **Why this target:**
+
+The project allows a maximum of 70%, but I want a more balanced dataset so the model cannot get a high score by mostly predicting one dominant label. A 60% limit still allows the natural distribution of posts to be uneven without letting one category overwhelm the training data.
 
 
 
@@ -91,9 +96,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+My labels should agree with the comparison or staff labels on at least 70% of the posts that are labeled by both sides.
 
 **Why this target:**
+
+Some posts in r/truegaming can reasonably sit between categories, so I do not expect perfect agreement. However, if another person using the same general distinctions agrees with at least 70% of my labels, I would consider the taxonomy consistent enough to be useful.
 
 
 
@@ -103,11 +110,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+For predictions where the model reports a confidence of 80% or higher, at least 80% of those predictions should be correct.
 
 **Why this target:**
 
-
+If the model gives a prediction with high confidence, I expect it to be more reliable than its overall accuracy. I chose 80% because a confident prediction should usually be correct, even if the model is less accurate on more ambiguous posts.
 
 ---
 
