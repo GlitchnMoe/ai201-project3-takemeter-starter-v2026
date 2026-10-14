@@ -42,7 +42,17 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
+Community: `r/truegaming`
 
+For my initial reading of the community, I noticed four candidate distinctions:
+
+1. Many posts discuss serious topics through the context of gaming, often expanding the discussion beyond a particular game and into the broader “meta” of gaming, culture, or society.
+
+2. Some posts focus on why players behave or feel a certain way, discussing things like motivation, frustration, nostalgia, competitiveness, burnout, or other psychological aspects of playing games.
+
+3. Other posts focus more on larger trends in game design and the gaming industry, such as monetization, difficulty, live-service models, open-world design, and differences between older and modern games.
+
+4. Some posts focus on how gaming communities themselves shape the experience of games, such as how online discussion, competitive culture, social expectations, fandoms, or player communities can change the way people view or enjoy a game.
 
 ---
 
