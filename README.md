@@ -336,26 +336,21 @@ I experimented with other settings, but this configuration produced the best res
 
 ## How I Used AI
 
-<!-- Two specific moments — what you asked, what came back, what you changed.
-
-     ⚠️ Plus disclosure of any pre-labelling. If you had a model pre-label a
-     batch and then read and corrected every one, say that. It's an allowed
-     workflow and disclosing it costs you nothing. Not disclosing it is the
-     problem. -->
-
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- **What I asked for:** I gave the AI my three label definitions and asked it to stress-test the hardest boundary, especially between `player_experience` and `gaming_culture`, by looking at borderline examples.
+- **What came back:** The AI showed examples where a post could reasonably fit either label and explained how the main focus of the post could be used to decide between them.
+- **What I changed:** I kept my original labels, but I made the decision rule more specific: posts mainly about an individual player's thoughts, feelings, or behavior are `player_experience`, while posts using player behavior to make a broader point about communities, social norms, generations, or gaming culture are `gaming_culture`.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- **What I asked for:** After training the classifier, I asked the AI to help me compare my training settings with the notebook defaults and think through why different settings were affecting the results.
+- **What came back:** The AI suggested several possible training changes, including changing the number of epochs, learning rate, batch size, and sequence length. I tested different settings rather than assuming the suggestions would automatically improve the model.
+- **What I changed:** I ultimately kept the configuration that produced my best result: 20 epochs, a learning rate of `1e-5`, batch size 16, and a maximum length of 128. Compared with the notebook defaults, I increased the epochs from 3 to 20 and reduced the learning rate from `2e-5` to `1e-5`.
 
 **Pre-labelling disclosure:**
+
+I labelled the first 20 posts cold using my own label definitions. For the remaining 180 posts, I used AI to pre-label the posts as `player_experience`, `game_design`, or `gaming_culture`. I then read through the pre-labelled examples myself and corrected labels when the AI suggestion did not match the main focus of the post. The pre-labelled rows were marked in the `note` column of `labels.csv`.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
