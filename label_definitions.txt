@@ -5,6 +5,6 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+player_experience: Posts primarily about the player's personal or psychological experience of gaming, such as motivation, frustration, nostalgia, burnout, enjoyment, difficulty, or competitive behavior.
+game_design: Posts primarily analyzing how games are designed or how specific mechanics, systems, genres, or design choices affect the experience of playing.
+gaming_culture: Posts primarily about gaming as a broader culture or industry, including gaming communities, social expectations, monetization trends, fandoms, industry practices, or how gaming connects to issues outside individual games.
