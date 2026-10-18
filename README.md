@@ -236,48 +236,63 @@ Using that rule, I would label “Gaming as a social ritual” as gaming_culture
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
-
 **Where the posts came from:**
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+I collected 200 public posts from the `r/truegaming` subreddit. I kept the full text of each post rather than trimming them, and stored all 200 examples together in a single unsplit `labels.csv` file.
+
+**How I labelled them:**
+
+I labelled the first 20 posts cold using only my label definitions and marked those rows as `cold` in the `note` column. For the remaining 180 posts, I used AI to pre-label them as `player_experience`, `game_design`, or `gaming_culture`. I then read through the pre-labelled examples and corrected labels when the suggested label did not match the main focus of the post. These rows were marked as pre-labelled in the `note` column.
 
 **Counts per label:**
 
 | Label | Count | Share |
-|---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+|---|---:|---:|
+| `player_experience` | 36 | 18% |
+| `game_design` | 92 | 46% |
+| `gaming_culture` | 72 | 36% |
+| **Total** | **200** | **100%** |
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
-
 **1.**
-> *The post:*
+> *The post:*  
+> **"Most people hate inconvenience, but I crave it"**
 >
-> *Could have been:*
+> *Could have been:*  
+> `player_experience` or `game_design`
 >
-> *I chose, because:*
+> *I chose:*  
+> `player_experience`
+>
+> *Because:*  
+> The post sits close to the boundary because inconvenience can be created by deliberate game-design choices, but the main focus is the player's personal preference for and reaction to that friction. Since the central idea is about what the player personally enjoys rather than primarily analyzing how a mechanic should be designed, I classified it as `player_experience`.
 
 **2.**
-> *The post:*
+> *The post:*  
+> **"Respecting the player's time and how Marvel's Spider-Man on PS4 shattered that rule"**
 >
-> *Could have been:*
+> *Could have been:*  
+> `game_design` or `player_experience`
 >
-> *I chose, because:*
+> *I chose:*  
+> `game_design`
+>
+> *Because:*  
+> The idea of a game "respecting the player's time" involves the player's experience, but the post is mainly evaluating design decisions that affect pacing and how the player spends time in the game. Because the main argument is about how those design choices shape the experience rather than simply describing the author's feelings, I classified it as `game_design`.
 
 **3.**
-> *The post:*
+> *The post:*  
+> **"Why do you think folk are more accepting toward English-dubbed voiceovers for video games than other mediums?"**
 >
-> *Could have been:*
+> *Could have been:*  
+> `gaming_culture` or `game_design`
 >
-> *I chose, because:*
+> *I chose:*  
+> `gaming_culture`
+>
+> *Because:*  
+> Voice acting is part of how a game is presented, so it could be interpreted as a design-related topic. However, the post is mainly asking about broader audience attitudes and why gaming communities treat dubbed voiceovers differently from audiences of other media. Since the main focus is a cultural norm surrounding games rather than a gameplay or design system, I classified it as `gaming_culture`.
 
 ---
 
