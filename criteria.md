@@ -51,72 +51,35 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall Accuracy
 
-<!-- Your criterion. It must name a number. -->
+The classifier should achieve an overall accuracy of **at least 65% on the held-out test set**.
 
-The classifier should achieve an overall accuracy of at least 65% on the held-out test set.
+**Why:** My classifier has three `r/truegaming` labels — `player_experience`, `game_design`, and `gaming_culture` — and some posts can reasonably sit near the boundary between them. I chose 65% because correctly classifying about two out of every three unseen `r/truegaming` posts would be meaningfully better than roughly 33% random guessing while still accounting for the overlap in my taxonomy.
 
+## 2. Per-Label F1
 
-**Why this target:**
+Each of the three labels — `player_experience`, `game_design`, and `gaming_culture` — should achieve an **F1 score of at least 0.55** on the held-out test set.
 
-With three labels, a random guess would only be correct about one-third of the time. I chose 65% because I would consider the classifier useful if it can correctly categorize roughly two out of every three unseen posts.
+**Why:** Overall accuracy could hide a label that the model performs poorly on. I chose 0.55 because `player_experience` and `gaming_culture` have a particularly difficult boundary in my taxonomy: posts about player behavior can either focus on an individual's experience or use that behavior to make a broader point about gaming culture.
 
----
+## 3. Dataset Balance
 
-## 2.
+No single label should make up more than **60% of the examples in `labels.csv`**.
 
-<!-- Your criterion. -->
+**Why:** From my initial reading of `r/truegaming`, a large number of posts analyze mechanics and design choices, so `game_design` could easily become much larger than the other two labels. I chose a 60% maximum so the model would still see enough `player_experience` and `gaming_culture` examples instead of learning to rely heavily on the most common type of discussion in the subreddit.
 
-Each of the three labels — player_experience, game_design, and gaming_culture — should achieve an F1 score of at least 0.55 on the held-out test set.
+## 4. Labeling Consistency
 
-**Why this target:**
+My labels should agree with the comparison or staff labels on **at least 70% of the posts that are labeled by both sides**.
 
-Overall accuracy could hide a label that the model performs poorly on. I chose 0.55 because the categories have some overlap, especially player_experience and gaming_culture, but I still want the model to perform meaningfully better than simply favoring the easiest category.
+**Why:** `r/truegaming` posts are often long and argumentative, and one post can discuss a player's experience, game mechanics, and broader gaming culture at the same time. I do not expect perfect agreement, but at least 70% agreement would show that my definitions and decision rules are clear enough for another person to apply them similarly.
 
+## 5. High-Confidence Predictions
 
+For predictions where the model reports a confidence of **80% or higher**, at least **80% of those predictions should be correct**.
 
----
-
-## 3.
-
-<!-- Your criterion. -->
-
-No single label should make up more than 60% of the examples in labels.csv.
-
-**Why this target:**
-
-The project allows a maximum of 70%, but I want a more balanced dataset so the model cannot get a high score by mostly predicting one dominant label. A 60% limit still allows the natural distribution of posts to be uneven without letting one category overwhelm the training data.
-
-
-
----
-
-## 4.
-
-<!-- Your criterion. -->
-
-My labels should agree with the comparison or staff labels on at least 70% of the posts that are labeled by both sides.
-
-**Why this target:**
-
-Some posts in r/truegaming can reasonably sit between categories, so I do not expect perfect agreement. However, if another person using the same general distinctions agrees with at least 70% of my labels, I would consider the taxonomy consistent enough to be useful.
-
-
-
----
-
-## 5.
-
-<!-- Your criterion. -->
-
-For predictions where the model reports a confidence of 80% or higher, at least 80% of those predictions should be correct.
-
-**Why this target:**
-
-If the model gives a prediction with high confidence, I expect it to be more reliable than its overall accuracy. I chose 80% because a confident prediction should usually be correct, even if the model is less accurate on more ambiguous posts.
-
----
+**Why:** Many `r/truegaming` posts are long and can mix multiple parts of my taxonomy, especially `player_experience` with `gaming_culture`. If the model still assigns at least 80% confidence to one of my three labels despite that ambiguity, I expect that prediction to be correct at least 80% of the time. Otherwise, the model's confidence would not be very useful for distinguishing clear posts from borderline ones.
 
 <!-- ─────────────────────────────────────────────────────────────────────────
      UNIT 6 — read this before you change anything above.
