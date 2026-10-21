@@ -366,20 +366,23 @@ I labelled the first 20 posts cold using my own label definitions. For the remai
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.500 | 0.833 | +0.333 |
+| Macro F1 | 0.471 | 0.769 | +0.297 |
+| F1 — `game_design` | 0.353 | 0.889 | +0.536 |
+| F1 — `gaming_culture` | 0.600 | 0.846 | +0.246 |
+| F1 — `player_experience` | 0.462 | 0.571 | +0.110 |
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
+I predict that my trained model will outperform the baseline overall, especially on player_experience and gaming_culture, because fine-tuning should help it learn the specific boundaries in my taxonomy that are harder to capture from the label definitions alone.
+
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
 
-
+The trained model clearly outperformed the baseline, with overall accuracy increasing from 0.500 to 0.833 and macro F1 increasing from 0.471 to 0.769. The largest improvement was on game_design, where F1 increased from 0.353 to 0.889. This shows that fine-tuning on my labeled r/truegaming posts helped the model learn the distinctions in my taxonomy beyond what the general baseline could infer from the label definitions alone. My prediction was partly correct: the trained model did improve on player_experience and gaming_culture, but the biggest improvement was actually on game_design.
 
 ---
 
