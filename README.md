@@ -399,23 +399,39 @@ The trained model clearly outperformed the baseline, with overall accuracy incre
 | 4.  |  |  |  |  |  |
 | 5.  |  |  |  |  |  |
 
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.833 | 0.900 | 0.733 | 0.167 |
+| Macro F1 | 0.769 | 0.825 | 0.670 | 0.155 |
+| F1 — `player_experience` | 0.571 | 0.571 | 0.444 | 0.127 |
+| F1 — `game_design` | 0.889 | 0.903 | 0.750 | 0.153 |
+| F1 — `gaming_culture` | 0.846 | 1.000 | 0.815 | 0.185 |
+
+Three-seed spread: Accuracy ranged from 0.733 to 0.900 across the three seeds, a spread of 0.167, or 16.7 percentage points. Because this is greater than about 10 points, the results are sensitive to which posts land in the train and test splits, suggesting that the relatively small and uneven dataset produces an unstable measurement.
+
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | player_experience | game_design | gaming_culture |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **player_experience** | 2 | 1 | 2 |
+| **game_design** | 0 | 12 | 2 |
+| **gaming_culture** | 0 | 0 | 11 |
+
+Biggest confusion: 2 real `player_experience` posts called `gaming_culture`.
+The other direction: 0 real `gaming_culture` posts called `player_experience`.
+
+Roughly symmetric — the model finds this pair hard in both directions,
+which more often means the boundary itself is genuinely hard.
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
 
-
+The largest off-diagonal value was 2, occurring in two places: 2 real player_experience posts were predicted as gaming_culture, and 2 real game_design posts were predicted as gaming_culture. No real gaming_culture posts were predicted as either of the other labels, so the confusion was directional toward gaming_culture rather than symmetric.
 
 ---
 
