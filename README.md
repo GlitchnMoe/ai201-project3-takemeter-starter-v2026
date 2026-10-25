@@ -471,7 +471,7 @@ The largest off-diagonal value was 2, occurring in two places: 2 real player_exp
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 30 / 30 = 100%
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
@@ -480,40 +480,11 @@ The largest off-diagonal value was 2, occurring in two places: 2 real player_exp
 
 **Disagreements**
 
-<!-- Three lines each: the post, both labels, and who you think is right and
-     why — grounded in the staff definitions you were both applying.
-
-     Then sort each into one of three piles:
-       (a) the rule covered it and I applied it loosely → a consistency problem
-       (b) the rule genuinely doesn't say               → a gap in the definitions
-       (c) the rule is ambiguous here and my reading is defensible → argue it.
-           This is a legitimate win.
-
-     Pile (a) is the one that matters most for your diagnosis: if you applied a
-     written rule two different ways on 30 posts, that is direct evidence about
-     what you did across your own 200. -->
-
-**1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
-
-**2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
+There were no disagreements between my labels and the staff labels, so there were no cases to adjudicate or sort into piles (a), (b), or (c).
 
 **What the pattern in my disagreements tells me:**
 
-
+I matched the staff labels on all 30 posts. The staff taxonomy and decision rules were clear enough for me to apply consistently, especially the distinction between a load-bearing fact in analysis, an unsupported general claim in hot_take, and an immediate personal response in reaction. Because there were no disagreements, this check did not reveal evidence that I was applying the written rules inconsistently.
 
 ---
 
