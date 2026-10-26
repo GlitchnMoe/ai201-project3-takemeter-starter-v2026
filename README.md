@@ -348,6 +348,14 @@ I experimented with other settings, but this configuration produced the best res
 - **What came back:** The AI suggested several possible training changes, including changing the number of epochs, learning rate, batch size, and sequence length. I tested different settings rather than assuming the suggestions would automatically improve the model.
 - **What I changed:** I ultimately kept the configuration that produced my best result: 20 epochs, a learning rate of `1e-5`, batch size 16, and a maximum length of 128. Compared with the notebook defaults, I increased the epochs from 3 to 20 and reduced the learning rate from `2e-5` to `1e-5`.
 
+**Moment 3**
+
+- **What I asked for:** After running the model across three seeds, I asked the AI to help me interpret the confusion matrix, per-label F1 scores, and seed-to-seed spread without changing the criteria I had already written.
+
+- **What came back:** The AI pointed out that player_experience was the only label causing Criterion 2 to fail and was also my smallest class, while my 30/30 staff agreement result did not show evidence of inconsistent labeling. It also helped me notice that the model was tending to classify some real player_experience posts as broader gaming_culture or game_design posts.
+
+- **What I changed:** Based on that diagnosis, I chose one targeted improvement: I added 30 more player_experience examples and reran the same three seeds. I made the final call myself from the measured results: player_experience F1 improved from 0.571, 0.571, and 0.444 to 0.706, 0.900, and 0.636, so Criterion 2 changed from MISSED to MET, although the larger seed spread showed that model stability is still a limitation.
+
 **Pre-labelling disclosure:**
 
 I labelled the first 20 posts cold using my own label definitions. For the remaining 180 posts, I used AI to pre-label the posts as `player_experience`, `game_design`, or `gaming_culture`. I then read through the pre-labelled examples myself and corrected labels when the AI suggestion did not match the main focus of the post. The pre-labelled rows were marked in the `note` column of `labels.csv`.
@@ -528,14 +536,11 @@ Overall, the improvement was successful because it fixed the specific weakness i
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
+None of my five criteria are still missed after the improvement, so there are no remaining missed criteria that require another fix. The main limitation that remains is seed-to-seed instability: overall accuracy ranged from 0.686 to 0.943 after the improvement, but I stopped here because the assignment called for one targeted improvement and that change successfully fixed the criterion my diagnosis identified.
 
+**The gap between what I meant my labels to capture and what the model learned:**
 
-
-**The gap between what I meant my labels to capture and what the model
-learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
-
+I intended `player_experience` to capture posts centered on a player's personal feelings, habits, or relationship with games, but the confusion matrix showed that the model sometimes absorbed those posts into broader categories. Of the 5 real `player_experience` posts in the matrix, 2 were predicted as `gaming_culture` and 1 as `game_design`, showing that the model did not fully learn the boundary around personal player experience.
 
 
 <!-- ═════════════════════════════════════════════════════════════════════
