@@ -498,24 +498,31 @@ I matched the staff labels on all 30 posts. The staff taxonomy and decision rule
 
 **What I changed:**
 
+I added 30 additional `player_experience` posts from r/truegaming to my dataset. This increased the dataset from 200 to 230 examples and increased `player_experience` from 36 examples to 66. I did not change the other labels, the model architecture, or the training settings.
+
 **Which diagnosis pointed at it:**
+
+Criterion 2 was the only criterion I missed before the improvement. `player_experience` had F1 scores of 0.571, 0.571, and 0.444 across the three seeds and was also my smallest class, with only 36 of the original 200 examples. My staff agreement check was 30/30, so I did not have evidence that inconsistent labeling was the main cause. The evidence instead pointed to having too few `player_experience` examples and sensitivity to which examples landed in the train/test split, so I added examples specifically to that label.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.65 | 0.800 | 0.943 | 0.686 | MET |
+| 2. Every label F1 | ≥ 0.55 | 0.706 | 0.900 | 0.636 | MET |
+| 3. Dataset balance | No label > 60% | 40.0% | 40.0% | 40.0% | MET |
+| 4. Labeling consistency | ≥ 70% agreement | 100% | 100% | 100% | MET |
+| 5. High-confidence predictions | ≥ 80% accuracy when confidence ≥ 80% | 95.0% (19/20) | 100% (23/23) | 87.0% (20/23) | MET |
 
 **Did it help, and how do I know:**
 
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
+Yes. The change helped the specific weakness I targeted. Before the improvement, `player_experience` F1 was 0.571, 0.571, and 0.444 across Seeds 42, 7, and 2024. After adding 30 `player_experience` examples, those scores increased to 0.706, 0.900, and 0.636. The weakest result improved from 0.444 to 0.636, so `player_experience` now clears the 0.55 target in all three seeds and Criterion 2 changes from MISSED to MET.
 
+All five criteria are now met across all three seeds. Overall accuracy remained above 0.65 in every run, every label's F1 stayed above 0.55, the largest class now represents 40.0% of the dataset, labeling agreement remains 100%, and high-confidence predictions remained above the 80% accuracy target at 95.0%, 100%, and 87.0%.
 
+The improvement did not make the overall evaluation more stable. Accuracy ranged from 0.686 to 0.943 after the change, a spread of 0.257, compared with a spread of 0.167 before. However, the class distribution is now more balanced at 92 `game_design`, 72 `gaming_culture`, and 66 `player_experience`, so the remaining instability is less likely to be caused by severe class imbalance. The results instead suggest that the dataset and held-out test sets are still small enough that different train/test splits can cause large changes in the measured scores.
+
+Overall, the improvement was successful because it fixed the specific weakness identified in my diagnosis: `player_experience` now meets the required F1 threshold in all three seeds. At the same time, the larger seed-to-seed spread shows that model stability remains a limitation even though all five of my stated criteria are now met.
 
 ---
 
