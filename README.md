@@ -393,11 +393,11 @@ The trained model clearly outperformed the baseline, with overall accuracy incre
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.65 | 0.833 | 0.900 | 0.733 | MET |
+| 2. Every label F1 | ≥ 0.55 | 0.571 | 0.571 | 0.444 | MISSED |
+| 3. Dataset balance | No label > 60% | 46% | 46% | 46% | MET |
+| 4. Labeling consistency | ≥ 70% agreement | 100% | 100% | 100% | MET |
+| 5. High-confidence predictions | ≥ 80% accuracy when confidence ≥ 80% | 100% (12/12) | 100% (18/18) | 100% (13/13) | MET |
 
 | Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
 |---|---|---|---|---|
@@ -442,11 +442,11 @@ The largest off-diagonal value was 2, occurring in two places: 2 real player_exp
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.65 | MET | Accuracy was 0.833, 0.900, and 0.733 across the three seeds, so every run stayed above the 0.65 target. |
+| 2 | Every label F1 | ≥ 0.55 | MISSED | `player_experience` had F1 scores of 0.571, 0.571, and 0.444. Because Seed 2024 fell below 0.55, the criterion was missed even though the other two labels cleared the target. |
+| 3 | Dataset balance | No label > 60% | MET | The largest class was `game_design` with 92 of 200 posts, or 46%, which is below the 60% maximum. |
+| 4 | Labeling consistency | ≥ 70% agreement | MET | I agreed with the staff labels on 30 of 30 posts, giving an agreement rate of 100%, above the 70% target. |
+| 5 | High-confidence predictions | ≥ 80% accuracy when confidence ≥ 80% | MET | Predictions with confidence of at least 80% were correct 12/12 times for Seed 42, 18/18 for Seed 7, and 13/13 for Seed 2024, so all three runs exceeded the 80% target. |
 
 **Diagnoses**
 
@@ -459,7 +459,13 @@ The largest off-diagonal value was 2, occurring in two places: 2 real player_exp
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
 
+#### Criterion 2 — Every label F1: MISSED
 
+The miss came from player_experience. Its F1 was 0.571 for Seed 42, 0.571 for Seed 7, and fell to 0.444 for Seed 2024. player_experience is also my smallest class, with only 36 of the 200 examples, and it had only 5 examples in the original test split, so moving only a few posts between train and test can change its F1 substantially.
+
+The confusion matrix also shows that player_experience is the label the model has the most trouble recognizing: of 5 real player_experience posts, 2 were predicted as gaming_culture and 1 as game_design, while no real gaming_culture or game_design posts were predicted as player_experience. This suggests the model tends to absorb player_experience posts into the broader categories rather than confusing the boundary equally in both directions.
+
+My staff agreement check was 30/30, so that check did not provide evidence that I was applying written labeling rules inconsistently. Taken together with the large 16.7-point accuracy spread across seeds, the stronger evidence points to the small size of the player_experience class and sensitivity to the train/test split rather than a clear labeling-consistency problem.
 
 ---
 
